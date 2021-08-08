@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
-use App\Entity\Flowers;
+use App\Entity\Flower;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Flowers|null find($id, $lockMode = null, $lockVersion = null)
- * @method Flowers|null findOneBy(array $criteria, array $orderBy = null)
- * @method Flowers[]    findAll()
- * @method Flowers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Flower|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Flower|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Flower[]    findAll()
+ * @method Flower[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FlowersRepository extends ServiceEntityRepository
+class FlowerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Flowers::class);
+        parent::__construct($registry, Flower::class);
     }
 
     // /**
