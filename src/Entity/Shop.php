@@ -43,9 +43,7 @@ class Shop implements ShopInterface
      */
     private $flowers;
 
-    public function __construct(string $name, ?string $address) {
-        $this->name = $name;
-        $this->address = $address;
+    public function __construct() {
         $this->flowers = new ArrayCollection();
     }
 

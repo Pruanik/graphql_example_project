@@ -19,5 +19,6 @@ composer-install:
 enter:
 	docker exec -it ${PHP_CONTAINER_NAME} /bin/bash
 
-migrate:
+init:
 	docker exec -it ${PHP_CONTAINER_NAME} symfony console doctrine:migrations:migrate
+	docker exec -it ${PHP_CONTAINER_NAME} php bin/console doctrine:fixtures:load

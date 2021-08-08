@@ -8,7 +8,7 @@ use App\Model\Document\PurchaseInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
- * @MongoDB\Document(db="purchases", collection="graphql_example")
+ * @MongoDB\Document(db="graphql_example", collection="purchases")
  */
 class Purchase implements PurchaseInterface
 {
