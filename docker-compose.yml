@@ -16,6 +16,15 @@ services:
       - ./data/mysql:/var/lib/mysql
     networks:
       - app_net
+  mongodb:
+    container_name: "${MONGODB_CONTAINER_NAME}"
+    image: mongo:4
+    ports:
+      - "${MONGODB_EXTERNAL_PORT}:27017"
+    networks:
+      app_net:
+    volumes:
+      - ./data/mongodb:/data/db
   php:
     container_name: "${PHP_CONTAINER_NAME}"
     build:
@@ -28,6 +37,7 @@ services:
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - database
+      - mongodb
     networks:
       - app_net
   nginx:

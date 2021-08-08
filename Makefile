@@ -10,8 +10,14 @@ build:
 	docker-compose up -d
 	make composer-install
 
+stop:
+	docker-compose stop
+
 composer-install:
 	docker exec -it ${PHP_CONTAINER_NAME} composer install
 
 enter:
 	docker exec -it ${PHP_CONTAINER_NAME} /bin/bash
+
+migrate:
+	docker exec -it ${PHP_CONTAINER_NAME} symfony console doctrine:migrations:migrate
