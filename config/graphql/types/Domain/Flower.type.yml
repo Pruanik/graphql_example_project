@@ -1,0 +1,15 @@
+Flower:
+  type: object
+  config:
+    description: "Различные цветочки"
+    fields:
+      id:
+        type: "Int!"
+        description: "Идентификатор цветка"
+      name:
+        type: "String!"
+        description: "Название цветка"
+      shops:
+        type: "[Shop]"
+        description: "Магазины в которых есть эти цветы"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver::resolveByFlowerId", [args["id"]])'

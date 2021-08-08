@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Shop;
+use App\Model\Entity\ShopInterface;
+use App\Model\Exception\SearchException;
+use App\Model\Module\Shop\Repository\ShopRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,39 +17,33 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Shop[]    findAll()
  * @method Shop[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ShopRepository extends ServiceEntityRepository
+class ShopRepository extends ServiceEntityRepository implements ShopRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Shop::class);
     }
 
-    // /**
-    //  * @return Shops[] Returns an array of Shops objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $id
+     * @return ShopInterface
+     * @throws SearchException
+     */
+    public function getById(int $id): ShopInterface
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $flower = $this->find($id);
+        if ($flower === null) {
+            throw new SearchException(sprintf('Not found shop #id %s', $id));
+        }
+        return $flower;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Shops
+    /**
+     * @param int $limit
+     * @return ShopInterface[]
+     */
+    public function getWithLimit(int $limit = 100): array
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->findBy([], null, $limit);
     }
-    */
 }

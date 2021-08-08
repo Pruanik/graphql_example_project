@@ -1,0 +1,33 @@
+Query:
+  type: object
+  config:
+    description: "Main query"
+    fields:
+      flower:
+        type: "Flower"
+        args:
+          id:
+            type: "Int!"
+            description: "Идентификатор цветка"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolve", [args["id"]])'
+      flowers:
+        type: "[Flower]"
+        args:
+          limit:
+            type: "Int"
+            description: "Количество позиций"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolveCollection", [args["limit"]])'
+      shop:
+        type: "Shop"
+        args:
+          id:
+            type: "Int!"
+            description: "Идентификатор магазина"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver::resolve", [args["id"]])'
+      shops:
+        type: "[Shop]"
+        args:
+          limit:
+            type: "Int"
+            description: "Количество магазинов"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver::resolveCollection", [args["limit"]])'

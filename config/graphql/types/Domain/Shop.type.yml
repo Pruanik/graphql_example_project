@@ -1,0 +1,18 @@
+Shop:
+  type: object
+  config:
+    description: "Цветочные магазины"
+    fields:
+      id:
+        type: "Int!"
+        description: "Идентификатор цветочного магазина"
+      name:
+        type: "String!"
+        description: "Название цветочного магазина"
+      address:
+        type: "String"
+        description: "Адрес цветочного магазина"
+      flowers:
+        type: "[Flower]"
+        description: "Цветы в этом магазине"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolveByShopId")'

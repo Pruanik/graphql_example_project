@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Flower;
+use App\Model\Entity\FlowerInterface;
+use App\Model\Exception\SearchException;
+use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,39 +17,33 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Flower[]    findAll()
  * @method Flower[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FlowerRepository extends ServiceEntityRepository
+class FlowerRepository extends ServiceEntityRepository implements FlowerRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Flower::class);
     }
 
-    // /**
-    //  * @return Flowers[] Returns an array of Flowers objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $id
+     * @return FlowerInterface
+     * @throws SearchException
+     */
+    public function getById(int $id): FlowerInterface
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $flower = $this->find($id);
+        if ($flower === null) {
+            throw new SearchException(sprintf('Not found flower #id %s', $id));
+        }
+        return $flower;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Flowers
+    /**
+     * @param int $limit
+     * @return FlowerInterface[]
+     */
+    public function getWithLimit(int $limit = 100): array
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->findBy([], null, $limit);
     }
-    */
 }
