@@ -9,4 +9,6 @@
 /vendor/
 /data/
 ###< symfony/framework-bundle ###
+
 /.idea/
+docker-compose.override.yml

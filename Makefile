@@ -2,6 +2,9 @@ include .env
 
 up:
 	docker-compose up -d
+
+up-without-databases:
+	docker-compose up -d nginx
 	
 build:
 	docker-compose rm -vsf

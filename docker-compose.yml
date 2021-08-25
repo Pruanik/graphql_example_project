@@ -11,7 +11,7 @@ services:
       MYSQL_USER: "${DATABASE_USER}"
       MYSQL_PASSWORD: "${DATABASE_PASS}"
     ports:
-      - "${DATABASE_EXTERNAL_PORT}:3306"
+      - "${DATABASE_EXTERNAL_PORT:-3306}:3306"
     volumes:
       - ./data/mysql:/var/lib/mysql
     networks:
@@ -20,7 +20,7 @@ services:
     container_name: "${MONGODB_CONTAINER_NAME}"
     image: mongo:4
     ports:
-      - "${MONGODB_EXTERNAL_PORT}:27017"
+      - "${MONGODB_EXTERNAL_PORT:-27017}:27017"
     networks:
       app_net:
     volumes:
@@ -35,9 +35,6 @@ services:
     volumes:
       - .:/app:delegated
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - database
-      - mongodb
     networks:
       - app_net
   nginx:
@@ -50,7 +47,6 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-      - database
     networks:
       - app_net
 networks:
