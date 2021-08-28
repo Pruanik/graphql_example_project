@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Document;
+namespace App\Entity;
 
 use App\Model\Document\PurchaseInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-
 /**
- * @MongoDB\Document(db="graphql_example", collection="purchases")
+ * @MongoDB\Document
  */
 class Purchase implements PurchaseInterface
 {

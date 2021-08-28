@@ -12,11 +12,11 @@ class PurchasesFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-//        $purchase = new Purchase();
-//        $purchase->setCustomerName('Paul');
-//        $purchase->setFlowers([2,3,4]);
-//        $purchase->setShopId(4);
-//        $manager->persist($purchase);
+        $purchase = new Purchase();
+        $purchase->setCustomerName('Paul');
+        //$purchase->setFlowers([2,3,4]);
+        $purchase->setShopId(4);
+        $manager->persist($purchase);
 //
 //        $manager->flush();
     }
