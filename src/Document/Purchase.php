@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Document;
 
 use App\Model\Document\PurchaseInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
 /**
  * @MongoDB\Document
  */
