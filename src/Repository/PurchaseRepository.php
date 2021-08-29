@@ -8,6 +8,7 @@ use App\Document\Purchase;
 use App\Model\Module\Purchase\Repository\PurchaseRepositoryInterface;
 use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepository;
+use Doctrine\ODM\MongoDB\MongoDBException;
 use LogicException;
 
 class PurchaseRepository extends ServiceDocumentRepository implements
@@ -21,5 +22,15 @@ class PurchaseRepository extends ServiceDocumentRepository implements
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Purchase::class);
+    }
+
+    /**
+     * @throws MongoDBException
+     */
+    public function deleteAll(): void
+    {
+        $this->createQueryBuilder()->remove()
+            ->getQuery()
+            ->execute();
     }
 }

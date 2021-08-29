@@ -21,4 +21,6 @@ interface ShopRepositoryInterface
      * @return ShopInterface[]
      */
     public function getWithLimit(int $limit = 100): array;
+
+    public function getAllIds(): array;
 }

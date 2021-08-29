@@ -46,4 +46,12 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
     {
         return $this->findBy([], null, $limit);
     }
+
+    public function getAllIds(): array
+    {
+        return $this->createQueryBuilder('Shops')
+            ->select('Shops.id')
+            ->getQuery()
+            ->getScalarResult();
+    }
 }

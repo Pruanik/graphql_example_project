@@ -78,7 +78,7 @@ class ShopsFixture extends Fixture implements DependentFixtureInterface
         $flowers = FlowersFixture::FLOWERS;
         $flowersCount = count($flowers);
         shuffle($flowers);
-        $flowersCountExist = random_int(0, $flowersCount);
+        $flowersCountExist = random_int(1, $flowersCount);
         return array_slice($flowers, 0, $flowersCountExist);
     }
 }
