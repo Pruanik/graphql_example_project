@@ -15,4 +15,6 @@ Shop:
       flowers:
         type: "[Flower]"
         description: "Цветы в этом магазине"
-        resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolveByShopId")'
+      purchases:
+        type: "[Purchase]"
+        description: "Покупки совершенные в этом магазине"

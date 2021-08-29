@@ -30,11 +30,6 @@ class Attribute implements AttributeInterface
      */
     private $attribute;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="attribute")
-     */
-    private $flowerAttribute;
-
     public function getId(): ?int
     {
         return $this->id;

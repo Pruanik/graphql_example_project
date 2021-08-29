@@ -29,7 +29,9 @@ class FlowerAttribute implements FlowerAttributeInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Flower")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="flower_id", referencedColumnName="id")
+     * })
      */
     private $flower;
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Model\Entity\FlowerAttributeInterface;
 use App\Model\Entity\ShopInterface;
 use App\Repository\FlowerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -41,10 +42,11 @@ class Flower implements FlowerInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flower")
      */
-    private $flowerAttribute;
+    private Collection $flowerAttributes;
 
     public function __construct() {
         $this->shops = new ArrayCollection();
+        $this->flowerAttributes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +77,20 @@ class Flower implements FlowerInterface
     public function setShop(ShopInterface $shop): FlowerInterface
     {
         $this->shops->add($shop);
+        return $this;
+    }
+
+    /**
+     * @return Collection|FlowerAttributeInterface[]
+     */
+    public function getFlowerAttribute(): Collection
+    {
+        return $this->flowerAttributes;
+    }
+
+    public function setFlowerAttribute(FlowerAttributeInterface $flowerAttribute): FlowerInterface
+    {
+        $this->flowerAttributes->add($flowerAttribute);
         return $this;
     }
 }

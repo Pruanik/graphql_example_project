@@ -3,6 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\FlowerAttribute;
+use App\Model\Entity\FlowerAttributeInterface;
+use App\Model\Entity\FlowerInterface;
+use App\Model\Exception\SearchException;
+use App\Model\Module\FlowerAttribute\Repository\FlowerAttributeRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,39 +16,33 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method FlowerAttribute[]    findAll()
  * @method FlowerAttribute[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FlowerAttributeRepository extends ServiceEntityRepository
+class FlowerAttributeRepository extends ServiceEntityRepository implements FlowerAttributeRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, FlowerAttribute::class);
     }
 
-    // /**
-    //  * @return FlowerAttribute[] Returns an array of FlowerAttribute objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getById(int $id): FlowerAttributeInterface
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $flowerAttribute = $this->find($id);
+        if ($flowerAttribute === null) {
+            throw new SearchException(sprintf('Not found flower attribute #id %s', $id));
+        }
+        return $flowerAttribute;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?FlowerAttribute
+    /**
+     * @param FlowerInterface $flower
+     * @return FlowerAttributeInterface[]
+     * @throws SearchException
+     */
+    public function getByFlower(FlowerInterface $flower): array
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $flowerAttribute = $this->findBy(['flower' => $flower]);
+        if ($flowerAttribute === null) {
+            throw new SearchException(sprintf('Not found flower attribute for flower #id %s', $flower->getId()));
+        }
+        return $flowerAttribute;
     }
-    */
 }

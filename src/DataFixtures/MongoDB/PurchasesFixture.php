@@ -26,14 +26,11 @@ class PurchasesFixture extends Fixture
         'Женя',
     ];
 
-    private PurchaseRepositoryInterface $purchaseRepository;
     private ShopServiceInterface $shopService;
 
     public function __construct(
-        PurchaseRepositoryInterface $purchaseRepository,
         ShopServiceInterface $shopService
     ) {
-        $this->purchaseRepository = $purchaseRepository;
         $this->shopService = $shopService;
     }
 
@@ -41,25 +38,14 @@ class PurchasesFixture extends Fixture
      * @param ObjectManager $manager
      * @throws SearchException
      * @throws Exception
-     * @throws MongoDBException
      */
     public function load(ObjectManager $manager)
     {
-        $this->before();
-
         foreach (self::CUSTOMERS as $customer) {
             $purchase = $this->createPurchase($customer);
             $manager->persist($purchase);
             $manager->flush();
         }
-    }
-
-    /**
-     * @throws MongoDBException
-     */
-    private function before(): void
-    {
-        $this->purchaseRepository->deleteAll();
     }
 
     /**

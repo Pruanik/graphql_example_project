@@ -1,0 +1,14 @@
+FlowerAttribute:
+  type: object
+  config:
+    description: "Свойство цветка"
+    fields:
+      id:
+        type: "Int!"
+        description: "Идентификатор свойства"
+      name:
+        type: "String!"
+        description: "Название свойства"
+      value:
+        type: "String!"
+        description: "Значение свойства"

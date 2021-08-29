@@ -1,0 +1,14 @@
+Purchase:
+  type: object
+  config:
+    description: "Совершенная покупка"
+    fields:
+      id:
+        type: "String!"
+        description: "Идентификатор покупки"
+      customerName:
+        type: "String!"
+        description: "Имя покупателя"
+      flowers:
+        type: "[Flower]"
+        description: "Купленные цветы"

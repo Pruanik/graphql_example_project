@@ -23,14 +23,4 @@ class PurchaseRepository extends ServiceDocumentRepository implements
     {
         parent::__construct($registry, Purchase::class);
     }
-
-    /**
-     * @throws MongoDBException
-     */
-    public function deleteAll(): void
-    {
-        $this->createQueryBuilder()->remove()
-            ->getQuery()
-            ->execute();
-    }
 }
