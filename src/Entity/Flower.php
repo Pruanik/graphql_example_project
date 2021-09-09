@@ -40,7 +40,7 @@ class Flower implements FlowerInterface
     private Collection $shops;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flower")
+     * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flower",cascade={"persist"})
      */
     private Collection $flowerAttributes;
 
