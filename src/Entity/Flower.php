@@ -38,13 +38,13 @@ class Flower implements FlowerInterface
 
     /**
      * @var Collection|ShopInterface[]
-     * @ORM\ManyToMany(targetEntity="App\Entity\Shop", mappedBy="flower")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Shop", mappedBy="flowers")
      */
     private Collection $shops;
 
     /**
      * @var Collection|FlowerAttributeInterface[]
-     * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flower",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flowers",cascade={"persist"})
      */
     private Collection $flowerAttributes;
 

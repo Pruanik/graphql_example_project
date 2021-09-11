@@ -12,3 +12,6 @@ Flower:
       flowerAttributes:
         type: "[FlowerAttribute]"
         description: "Совйства цветка"
+      shops:
+        type: "[Shop]"
+        description: "Магазины в которых есть эти цветы"
