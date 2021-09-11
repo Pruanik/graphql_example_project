@@ -37,7 +37,7 @@ class AttributesFixture extends Fixture
     {
         foreach (self::ATTRIBUTES as $attributeInfo) {
             $attribute = new Attribute();
-            $attribute->setAttribute($attributeInfo['name']);
+            $attribute->setName($attributeInfo['name']);
             $manager->persist($attribute);
             $this->addReference(self::getReferenceId($attributeInfo['name']), $attribute);
         }

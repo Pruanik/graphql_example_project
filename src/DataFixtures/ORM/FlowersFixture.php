@@ -10,6 +10,7 @@ use App\Model\Entity\AttributeInterface;
 use App\Model\Entity\FlowerInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 
 class FlowersFixture extends Fixture
 {
@@ -27,12 +28,16 @@ class FlowersFixture extends Fixture
         'Ирис',
     ];
 
+    /**
+     * @param ObjectManager $manager
+     * @throws Exception
+     */
     public function load(ObjectManager $manager)
     {
         foreach (self::FLOWERS as $flowerName) {
             $flower = new Flower();
             $flower->setName($flowerName);
-            $flower = $this->setFlowerAttributes($flower);
+            $flower = $this->addFlowerAttributes($flower);
             $manager->persist($flower);
             $this->addReference(self::getReferenceId($flowerName), $flower);
         }
@@ -40,7 +45,12 @@ class FlowersFixture extends Fixture
         $manager->flush();
     }
 
-    public function setFlowerAttributes(FlowerInterface $flower): FlowerInterface
+    /**
+     * @param FlowerInterface $flower
+     * @return FlowerInterface
+     * @throws Exception
+     */
+    private function addFlowerAttributes(FlowerInterface $flower): FlowerInterface
     {
         foreach (AttributesFixture::ATTRIBUTES as $attributeInfo) {
             if (random_int(1, 3) === 3) {
@@ -55,7 +65,7 @@ class FlowersFixture extends Fixture
             $flowerAttribute->setFlower($flower);
             $flowerAttribute->setAttribute($attribute);
             $flowerAttribute->setValue($value);
-            $flower->setFlowerAttribute($flowerAttribute);
+            $flower->addFlowerAttribute($flowerAttribute);
         }
 
         return $flower;

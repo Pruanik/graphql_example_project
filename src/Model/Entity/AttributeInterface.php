@@ -8,7 +8,7 @@ interface AttributeInterface
 {
     public function getId(): ?int;
 
-    public function getAttribute(): ?string;
+    public function getName(): ?string;
 
-    public function setAttribute(string $attribute): AttributeInterface;
+    public function setName(string $attribute): AttributeInterface;
 }

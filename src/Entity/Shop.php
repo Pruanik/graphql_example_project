@@ -22,6 +22,7 @@ use App\Model\Entity\ShopInterface;
 class Shop implements ShopInterface
 {
     /**
+     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -29,19 +30,22 @@ class Shop implements ShopInterface
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
+     * @var Collection|FlowerInterface[]
      * @ORM\ManyToMany(targetEntity="App\Entity\Flower", inversedBy="shops")
      */
-    private $flowers;
+    private Collection $flowers;
 
     public function __construct() {
         $this->flowers = new ArrayCollection();

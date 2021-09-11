@@ -19,12 +19,12 @@ interface FlowerInterface
      */
     public function getShops(): Collection;
 
-    public function setShop(ShopInterface $shop): FlowerInterface;
+    public function addShop(ShopInterface $shop): FlowerInterface;
 
     /**
      * @return Collection|FlowerAttributeInterface[]
      */
-    public function getFlowerAttribute(): Collection;
+    public function getFlowerAttributes(): Collection;
 
-    public function setFlowerAttribute(FlowerAttributeInterface $flowerAttribute): FlowerInterface;
+    public function addFlowerAttribute(FlowerAttributeInterface $flowerAttribute): FlowerInterface;
 }

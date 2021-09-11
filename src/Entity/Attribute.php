@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Attribute implements AttributeInterface
 {
     /**
+     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -26,23 +27,24 @@ class Attribute implements AttributeInterface
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $attribute;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAttribute(): ?string
+    public function getName(): ?string
     {
-        return $this->attribute;
+        return $this->name;
     }
 
-    public function setAttribute(string $attribute): AttributeInterface
+    public function setName(string $name): AttributeInterface
     {
-        $this->attribute = $attribute;
+        $this->name = $name;
 
         return $this;
     }

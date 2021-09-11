@@ -6,7 +6,7 @@ FlowerAttribute:
       id:
         type: "Int!"
         description: "Идентификатор свойства"
-      name:
+      attributeName:
         type: "String!"
         description: "Название свойства"
       value:

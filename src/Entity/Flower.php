@@ -23,6 +23,7 @@ use App\Model\Entity\FlowerInterface;
 class Flower implements FlowerInterface
 {
     /**
+     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -30,16 +31,19 @@ class Flower implements FlowerInterface
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var Collection|ShopInterface[]
      * @ORM\ManyToMany(targetEntity="App\Entity\Shop", mappedBy="flower")
      */
     private Collection $shops;
 
     /**
+     * @var Collection|FlowerAttributeInterface[]
      * @ORM\OneToMany(targetEntity="App\Entity\FlowerAttribute", mappedBy="flower",cascade={"persist"})
      */
     private Collection $flowerAttributes;
@@ -74,23 +78,27 @@ class Flower implements FlowerInterface
         return $this->shops;
     }
 
-    public function setShop(ShopInterface $shop): FlowerInterface
+    public function addShop(ShopInterface $shop): FlowerInterface
     {
-        $this->shops->add($shop);
+        if (!$this->shops->contains($shop)) {
+            $this->shops[] = $shop;
+        }
         return $this;
     }
 
     /**
      * @return Collection|FlowerAttributeInterface[]
      */
-    public function getFlowerAttribute(): Collection
+    public function getFlowerAttributes(): Collection
     {
         return $this->flowerAttributes;
     }
 
-    public function setFlowerAttribute(FlowerAttributeInterface $flowerAttribute): FlowerInterface
+    public function addFlowerAttribute(FlowerAttributeInterface $flowerAttribute): FlowerInterface
     {
-        $this->flowerAttributes->add($flowerAttribute);
+        if (!$this->flowerAttributes->contains($flowerAttribute)) {
+            $this->flowerAttributes[] = $flowerAttribute;
+        }
         return $this;
     }
 }

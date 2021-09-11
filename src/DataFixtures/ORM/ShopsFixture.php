@@ -40,6 +40,10 @@ class ShopsFixture extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    /**
+     * @param ObjectManager $manager
+     * @throws Exception
+     */
     public function load(ObjectManager $manager)
     {
         foreach (self::SHOPS as $shopInfo) {

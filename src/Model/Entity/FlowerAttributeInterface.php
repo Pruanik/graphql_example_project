@@ -19,4 +19,6 @@ interface FlowerAttributeInterface
     public function getValue(): ?string;
 
     public function setValue(string $value): self;
+
+    public function getAttributeName(): string;
 }

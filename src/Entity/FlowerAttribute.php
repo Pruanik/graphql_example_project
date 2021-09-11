@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
 class FlowerAttribute implements FlowerAttributeInterface
 {
     /**
+     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -28,6 +29,7 @@ class FlowerAttribute implements FlowerAttributeInterface
     private $id;
 
     /**
+     * @var FlowerInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Flower")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="flower_id", referencedColumnName="id")
@@ -36,12 +38,14 @@ class FlowerAttribute implements FlowerAttributeInterface
     private $flower;
 
     /**
+     * @var AttributeInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Attribute")
      * @ORM\JoinColumn(nullable=false)
      */
     private $attribute;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $value;
@@ -85,5 +89,10 @@ class FlowerAttribute implements FlowerAttributeInterface
         $this->value = $value;
 
         return $this;
+    }
+
+    public function getAttributeName(): string
+    {
+        return $this->attribute->getName();
     }
 }
