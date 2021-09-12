@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\GraphQL\Resolver;
 
 use App\Model\Entity\FlowerInterface;
+use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\Flower\Service\FlowerServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 
 class FlowerResolver implements ResolverInterface
@@ -36,5 +38,10 @@ class FlowerResolver implements ResolverInterface
     public function resolveCollection(?int $limit): ArrayCollection
     {
         return $this->flowerService->getCollectionWithLimit($limit ?? 100);
+    }
+
+    public function resolveByAttributeAndShop(ShopInterface $shop, Argument $args): ArrayCollection
+    {
+        return $this->flowerService->findElementsByShopAndAttributeValue($shop, $args['attributeValue']);
     }
 }

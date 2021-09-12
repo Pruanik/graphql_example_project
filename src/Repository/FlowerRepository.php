@@ -46,4 +46,32 @@ class FlowerRepository extends ServiceEntityRepository implements FlowerReposito
     {
         return $this->findBy([], null, $limit);
     }
+
+    /**
+     * @param int $shopId
+     * @return FlowerInterface[]
+     */
+    public function getByShopId(int $shopId): array
+    {
+        return $this->createQueryBuilder('f')
+            ->innerJoin('f.shops', 's', 'WITH', 's.id = :shopId')
+            ->setParameter(':shopId', $shopId)
+            ->getQuery()->getResult();
+    }
+
+    /**
+     * @param int $shopId
+     * @param string $attributeValue
+     * @return FlowerInterface[]
+     */
+    public function getByShopIdAndAttributeValue(int $shopId, string $attributeValue): array
+    {
+        return $this->createQueryBuilder('f')
+            ->leftJoin('f.flowerAttributes', 'fa')
+            ->innerJoin('f.shops', 's', 'WITH', 's.id = :shopId')
+            ->where('fa.value = :value')
+            ->setParameter(':value', $attributeValue)
+            ->setParameter(':shopId', $shopId)
+            ->getQuery()->getResult();
+    }
 }

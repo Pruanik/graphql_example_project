@@ -21,4 +21,17 @@ interface FlowerRepositoryInterface
      * @return FlowerInterface[]
      */
     public function getWithLimit(int $limit = 100): array;
+
+    /**
+     * @param int $shopId
+     * @return FlowerInterface[]
+     */
+    public function getByShopId(int $shopId): array;
+
+    /**
+     * @param int $shopId
+     * @param string $attributeValue
+     * @return FlowerInterface[]
+     */
+    public function getByShopIdAndAttributeValue(int $shopId, string $attributeValue): array;
 }

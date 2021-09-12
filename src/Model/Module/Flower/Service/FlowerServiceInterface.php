@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Module\Flower\Service;
 
 use App\Model\Entity\FlowerInterface;
+use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -18,4 +19,6 @@ interface FlowerServiceInterface
     public function find(int $id): FlowerInterface;
 
     public function getCollectionWithLimit(int $limit = 100): ArrayCollection;
+
+    public function findElementsByShopAndAttributeValue(ShopInterface $shop, ?string $attributeValue): ArrayCollection;
 }
