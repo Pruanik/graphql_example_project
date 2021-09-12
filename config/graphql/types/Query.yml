@@ -10,6 +10,13 @@ Query:
             type: "Int!"
             description: "Идентификатор цветка"
         resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolve", [args["id"]])'
+      flowers:
+        type: "[Flower]"
+        args:
+          limit:
+            type: "Int"
+            description: "Количество цветов"
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolveCollection", [args["limit"]])'
       shop:
         type: "Shop"
         args:

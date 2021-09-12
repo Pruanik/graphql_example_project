@@ -15,6 +15,11 @@ Shop:
       flowers:
         type: "[Flower]"
         description: "Цветы в этом магазине"
+        args:
+          attributeValue:
+            type: "String"
+            description: "Атрибут цветов"
+        resolveField: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver", [info, value, args])'
       purchases:
         type: "[Purchase]"
         description: "Покупки совершенные в этом магазине"

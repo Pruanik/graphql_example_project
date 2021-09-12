@@ -37,11 +37,4 @@ class FlowerResolver implements ResolverInterface
     {
         return $this->flowerService->getCollectionWithLimit($limit ?? 100);
     }
-
-    public function resolveByShopId(): array
-    {
-        return [
-            ['id' => 55]
-        ];
-    }
 }
