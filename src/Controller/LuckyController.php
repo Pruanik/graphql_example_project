@@ -4,15 +4,25 @@ namespace App\Controller;
 
 use App\Entity\Flower;
 use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
+use App\Model\Module\Purchase\Service\PurchaseServiceInterface;
+use App\Model\Module\Shop\Service\ShopServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyController
 {
     private FlowerRepositoryInterface $flowerRepository;
+    private PurchaseServiceInterface $purchaseService;
+    private ShopServiceInterface $shopService;
 
-    public function __construct(FlowerRepositoryInterface $flowerRepository) {
+    public function __construct(
+        FlowerRepositoryInterface $flowerRepository,
+        PurchaseServiceInterface $purchaseService,
+        ShopServiceInterface $shopService
+    ) {
         $this->flowerRepository = $flowerRepository;
+        $this->purchaseService = $purchaseService;
+        $this->shopService = $shopService;
     }
 
     /**
@@ -34,6 +44,18 @@ class LuckyController
             foreach ($shops as $shop) {
                 var_dump($shop->getName(), $shop->getAddress(), '<br>');
             }
+
+//            echo '<br><br><br>';
+//            $purchases = $shop->getPurchases();
+//            foreach ($purchases as $purchase) {
+//                var_dump($purchase);
+//            }
+        $shop = $this->shopService->find(299);
+            var_dump($shop->getName());
+            var_dump($shop->getPurchases());
+
+//        $purcahses = $this->purchaseService->findByShopId(299);
+//        var_dump($purcahses);
 //        } catch (\Throwable $e) {
 //
 //        }

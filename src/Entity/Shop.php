@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Model\Document\PurchaseInterface;
 use App\Model\Entity\FlowerInterface;
 use App\Repository\ShopRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Model\Entity\ShopInterface;
 
 /**
@@ -47,8 +49,15 @@ class Shop implements ShopInterface
      */
     private Collection $flowers;
 
+    /**
+     * @var Collection|PurchaseInterface[]
+     * @Gedmo\ReferenceMany(type="document", class="App\Document\Purchase", mappedBy="shop")
+     */
+    private Collection $purchases;
+
     public function __construct() {
         $this->flowers = new ArrayCollection();
+        $this->purchases = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +101,22 @@ class Shop implements ShopInterface
     {
         if (!$this->flowers->contains($flower)) {
             $this->flowers[] = $flower;
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection|PurchaseInterface[]
+     */
+    public function getPurchases(): Collection
+    {
+        return $this->purchases;
+    }
+
+    public function addPurchases(PurchaseInterface $purchases): ShopInterface
+    {
+        if (!$this->purchases->contains($purchases)) {
+            $this->purchases[] = $purchases;
         }
         return $this;
     }

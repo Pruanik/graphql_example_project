@@ -2,6 +2,9 @@
     "alcaeus/mongo-php-adapter": {
         "version": "1.2.1"
     },
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.2"
     },
@@ -122,6 +125,9 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v3.1.0"
     },
     "jean85/pretty-package-versions": {
         "version": "1.6.0"

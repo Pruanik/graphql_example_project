@@ -15,8 +15,4 @@ interface PurchaseInterface
     public function getShopId(): int;
 
     public function setShopId(int $shopId): void;
-
-    public function getFlowers(): array;
-
-    public function setFlowers(array $flowers): void;
 }

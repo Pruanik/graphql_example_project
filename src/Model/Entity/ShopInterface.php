@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Model\Document\PurchaseInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface ShopInterface
@@ -24,4 +25,11 @@ interface ShopInterface
     public function getFlowers(): Collection;
 
     public function addFlower(FlowerInterface $flower): ShopInterface;
+
+    /**
+     * @return Collection|PurchaseInterface[]
+     */
+    public function getPurchases(): Collection;
+
+    public function addPurchases(PurchaseInterface $purchases): ShopInterface;
 }

@@ -9,6 +9,3 @@ Purchase:
       customerName:
         type: "String!"
         description: "Имя покупателя"
-      flowers:
-        type: "[Flower]"
-        description: "Купленные цветы"
