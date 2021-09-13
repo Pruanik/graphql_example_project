@@ -1,4 +1,6 @@
 overblog_graphql:
+    security:
+        query_max_depth: 10
     definitions:
         schema:
             query: Query

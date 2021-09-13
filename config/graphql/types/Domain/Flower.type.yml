@@ -9,6 +9,7 @@ Flower:
       name:
         type: "String!"
         description: "Название цветка"
+        access: "@=isAuthenticated()"
       flowerAttributes:
         type: "[FlowerAttribute]"
         description: "Совйства цветка"

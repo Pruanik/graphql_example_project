@@ -1,0 +1,14 @@
+security:
+  providers:
+    your_db_provider:
+      entity:
+        class: App\Entity\User
+        property: apiToken
+  firewalls:
+    main:
+      anonymous: true
+      lazy: true
+      logout: ~
+      guard:
+        authenticators:
+          - App\Security\ApiTokenAuthenticator
