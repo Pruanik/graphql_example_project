@@ -46,9 +46,9 @@ class User implements UserInterface
         $this->apiToken = $apiToken;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        return ['ROLE_USER'];
     }
 
     public function getPassword()

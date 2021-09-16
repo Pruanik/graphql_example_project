@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +15,6 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 {
-    private $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
-
     public function supports(Request $request): bool
     {
         return $request->headers->has('X-AUTH-TOKEN');
@@ -35,11 +27,12 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
-        if (null === $credentials) {
-            return null;
+        $user = null;
+        if (null !== $credentials) {
+            $user = $userProvider->loadUserByIdentifier($credentials);
         }
 
-        return $userProvider->loadUserByIdentifier($credentials);
+        return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user): bool
