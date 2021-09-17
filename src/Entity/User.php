@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Entity;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Model\Entity\UserInterface;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +27,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", unique=true, nullable=false)
      */
     private $apiToken;
@@ -36,12 +37,12 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getApiToken()
+    public function getApiToken(): string
     {
         return $this->apiToken;
     }
 
-    public function setApiToken($apiToken): void
+    public function setApiToken(string $apiToken): void
     {
         $this->apiToken = $apiToken;
     }

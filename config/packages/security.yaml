@@ -6,6 +6,7 @@ security:
         property: apiToken
   firewalls:
     main:
+      stateless: true
       anonymous: true
       lazy: true
       logout: ~
