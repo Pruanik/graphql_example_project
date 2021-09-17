@@ -9,6 +9,9 @@ use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,6 +25,25 @@ class FlowerRepository extends ServiceEntityRepository implements FlowerReposito
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Flower::class);
+    }
+
+    /**
+     * @param FlowerInterface $flower
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
+    public function add(FlowerInterface $flower): void
+    {
+        $this->getEntityManager()->persist($flower);
+    }
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(): void
+    {
+        $this->getEntityManager()->flush();
     }
 
     /**

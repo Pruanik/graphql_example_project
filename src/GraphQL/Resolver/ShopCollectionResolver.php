@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Resolver;
 
-use App\Model\Entity\ShopInterface;
-use App\Model\Exception\SearchException;
 use App\Model\Module\Shop\Service\ShopServiceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 
-class ShopResolver implements ResolverInterface
+class ShopCollectionResolver implements ResolverInterface
 {
     private ShopServiceInterface $shopService;
 
@@ -19,12 +18,11 @@ class ShopResolver implements ResolverInterface
     }
 
     /**
-     * @param int $id
-     * @return ShopInterface
-     * @throws SearchException
+     * @param int|null $limit
+     * @return ArrayCollection
      */
-    public function resolve(int $id): ShopInterface
+    public function resolve(?int $limit): ArrayCollection
     {
-        return $this->shopService->find($id);
+        return $this->shopService->getCollectionWithLimit($limit ?? 100);
     }
 }

@@ -6,9 +6,25 @@ namespace App\Model\Module\Flower\Repository;
 
 use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\SearchException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 
 interface FlowerRepositoryInterface
 {
+    /**
+     * @param FlowerInterface $flower
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
+    public function add(FlowerInterface $flower): void;
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(): void;
+
     /**
      * @param int $id
      * @return FlowerInterface

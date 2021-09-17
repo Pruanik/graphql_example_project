@@ -1,0 +1,10 @@
+Mutation:
+  type: object
+  config:
+    fields:
+      createFlower:
+        type: "Flower"
+        resolve: "@=mutation('create_flower', [args])"
+        args:
+          input:
+            type: "FlowerInput"

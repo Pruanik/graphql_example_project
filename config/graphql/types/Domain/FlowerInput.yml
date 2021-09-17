@@ -1,0 +1,7 @@
+FlowerInput:
+  type: input-object
+  config:
+    fields:
+      name:
+        type: "String"
+        description: "Имя создаваемого цветка"

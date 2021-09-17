@@ -1,9 +1,10 @@
 overblog_graphql:
     security:
-        query_max_depth: 10
+        query_max_depth: 20
     definitions:
         schema:
             query: Query
+            mutation: Mutation
         mappings:
             types:
                 -

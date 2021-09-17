@@ -31,15 +31,6 @@ class FlowerResolver implements ResolverInterface
         return $this->flowerService->find($id);
     }
 
-    /**
-     * @param int|null $limit
-     * @return ArrayCollection
-     */
-    public function resolveCollection(?int $limit): ArrayCollection
-    {
-        return $this->flowerService->getCollectionWithLimit($limit ?? 100);
-    }
-
     public function resolveByAttributeAndShop(ShopInterface $shop, Argument $args): ArrayCollection
     {
         return $this->flowerService->findElementsByShopAndAttributeValue($shop, $args['attributeValue']);

@@ -4,17 +4,23 @@ declare(strict_types=1);
 
 namespace App\Model\Module\Flower\Service;
 
+use App\Entity\Flower;
 use App\Model\Entity\FlowerInterface;
 use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
+use App\Model\Module\Flower\Dto\FlowerCreationDto;
 use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 
 class FlowerService implements FlowerServiceInterface
 {
     private FlowerRepositoryInterface $flowerRepository;
 
-    public function __construct(FlowerRepositoryInterface $flowerRepository) {
+    public function __construct(FlowerRepositoryInterface $flowerRepository)
+    {
         $this->flowerRepository = $flowerRepository;
     }
 
@@ -43,5 +49,19 @@ class FlowerService implements FlowerServiceInterface
         }
 
         return new ArrayCollection($flowers);
+    }
+
+    /**
+     * @param FlowerCreationDto $flowerDto
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     * @throws OptimisticLockException
+     */
+    public function create(FlowerCreationDto $flowerDto): void
+    {
+        $flower = new Flower();
+        $flower->getName($flowerDto->name);
+        $this->flowerRepository->add($flower);
+        $this->flowerRepository->save();
     }
 }
