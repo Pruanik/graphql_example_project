@@ -53,15 +53,18 @@ class FlowerService implements FlowerServiceInterface
 
     /**
      * @param FlowerCreationDto $flowerDto
+     * @return FlowerInterface
      * @throws ORMException
      * @throws ORMInvalidArgumentException
      * @throws OptimisticLockException
      */
-    public function create(FlowerCreationDto $flowerDto): void
+    public function create(FlowerCreationDto $flowerDto): FlowerInterface
     {
         $flower = new Flower();
-        $flower->getName($flowerDto->name);
+        $flower->setName($flowerDto->name);
         $this->flowerRepository->add($flower);
         $this->flowerRepository->save();
+
+        return $flower;
     }
 }

@@ -28,9 +28,10 @@ interface FlowerServiceInterface
 
     /**
      * @param FlowerCreationDto $flowerDto
+     * @return FlowerInterface
      * @throws ORMException
      * @throws ORMInvalidArgumentException
      * @throws OptimisticLockException
      */
-    public function create(FlowerCreationDto $flowerDto): void;
+    public function create(FlowerCreationDto $flowerDto): FlowerInterface;
 }

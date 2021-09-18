@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutation;
 
+use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\FlowerCreationException;
 use App\Model\Module\Flower\Service\FlowerCreationDtoFillerInterface;
 use App\Model\Module\Flower\Service\FlowerServiceInterface;
@@ -27,16 +28,19 @@ class FlowerMutation implements MutationInterface, AliasedInterface
 
     /**
      * @param Argument $args
+     * @return FlowerInterface
      * @throws FlowerCreationException
      */
-    public function createFlower(Argument $args): void
+    public function createFlower(Argument $args): FlowerInterface
     {
         try {
             $flowerDto = $this->flowerCreationDtoFiller->fillingFromGraphQLArgument($args);
-            $this->flowerService->create($flowerDto);
+            $flower = $this->flowerService->create($flowerDto);
         } catch (Throwable $e) {
             throw new FlowerCreationException($e->getMessage());
         }
+
+        return $flower;
     }
 
     public static function getAliases(): array
