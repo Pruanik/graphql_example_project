@@ -34,7 +34,7 @@ class FlowerMutation implements MutationInterface, AliasedInterface
     public function createFlower(Argument $args): FlowerInterface
     {
         try {
-            $flowerDto = $this->flowerCreationDtoFiller->fillingFromGraphQLArgument($args);
+            $flowerDto = $this->flowerCreationDtoFiller->filling($args['input']);
             $flower = $this->flowerService->create($flowerDto);
         } catch (Throwable $e) {
             throw new FlowerCreationException($e->getMessage());

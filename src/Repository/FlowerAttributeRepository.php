@@ -8,6 +8,9 @@ use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\FlowerAttribute\Repository\FlowerAttributeRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,6 +24,25 @@ class FlowerAttributeRepository extends ServiceEntityRepository implements Flowe
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, FlowerAttribute::class);
+    }
+
+    /**
+     * @param FlowerAttributeInterface $flower
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
+    public function add(FlowerAttributeInterface $flower): void
+    {
+        $this->getEntityManager()->persist($flower);
+    }
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(): void
+    {
+        $this->getEntityManager()->flush();
     }
 
     public function getById(int $id): FlowerAttributeInterface

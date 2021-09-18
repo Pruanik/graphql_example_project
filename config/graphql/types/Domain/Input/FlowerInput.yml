@@ -3,7 +3,7 @@ FlowerInput:
   config:
     fields:
       name:
-        type: "String"
+        type: "String!"
         description: "Имя создаваемого цветка"
       flowerAttributes:
         type: "[FlowerAttributeInput]"

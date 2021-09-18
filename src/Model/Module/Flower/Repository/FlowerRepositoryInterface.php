@@ -50,4 +50,6 @@ interface FlowerRepositoryInterface
      * @return FlowerInterface[]
      */
     public function getByShopIdAndAttributeValue(int $shopId, string $attributeValue): array;
+
+    public function findByName(string $name): ?FlowerInterface;
 }

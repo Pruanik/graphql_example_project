@@ -13,6 +13,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
+use LogicException;
 
 /**
  * @method Flower|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,6 +23,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class FlowerRepository extends ServiceEntityRepository implements FlowerRepositoryInterface
 {
+    /**
+     * @param ManagerRegistry $registry
+     * @throws LogicException
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Flower::class);
@@ -95,5 +100,10 @@ class FlowerRepository extends ServiceEntityRepository implements FlowerReposito
             ->setParameter(':value', $attributeValue)
             ->setParameter(':shopId', $shopId)
             ->getQuery()->getResult();
+    }
+
+    public function findByName(string $name): ?FlowerInterface
+    {
+        return $this->findOneBy(['name' => $name]);
     }
 }

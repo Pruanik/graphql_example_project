@@ -4,10 +4,10 @@ ShopInput:
     description: "Новый цветочный магазин"
     fields:
       name:
-        type: "String"
+        type: "String!"
         description: "Название нового цветочного магазина"
       address:
-        type: "String"
+        type: "String!"
         description: "Адрес добавляемого цветочного магазина"
       flowers:
         type: "[FlowerInput]"

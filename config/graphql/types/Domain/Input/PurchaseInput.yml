@@ -4,5 +4,5 @@ PurchaseInput:
     description: "Заполняем овершенная покупка"
     fields:
       customerName:
-        type: "String"
+        type: "String!"
         description: "Имя нового покупателя"

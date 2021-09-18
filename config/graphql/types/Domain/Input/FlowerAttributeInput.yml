@@ -4,8 +4,8 @@ FlowerAttributeInput:
     description: "Свойство добавляемого цветка"
     fields:
       attributeName:
-        type: "String"
+        type: "String!"
         description: "Название свойства"
       value:
-        type: "String"
+        type: "String!"
         description: "Значение свойства"

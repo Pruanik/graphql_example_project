@@ -39,7 +39,7 @@ class FlowerAttribute implements FlowerAttributeInterface
 
     /**
      * @var AttributeInterface
-     * @ORM\ManyToOne(targetEntity="App\Entity\Attribute")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Attribute", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $attribute;

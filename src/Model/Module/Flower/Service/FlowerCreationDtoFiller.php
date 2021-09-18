@@ -5,21 +5,35 @@ declare(strict_types=1);
 namespace App\Model\Module\Flower\Service;
 
 use App\Model\Module\Flower\Dto\FlowerCreationDto;
-use Overblog\GraphQLBundle\Definition\Argument;
+use App\Model\Module\FlowerAttribute\Service\FlowerAttributeDtoFillerInterface;
 use Spatie\DataTransferObject\DataTransferObjectError;
 
 class FlowerCreationDtoFiller implements FlowerCreationDtoFillerInterface
 {
+    private FlowerAttributeDtoFillerInterface $flowerAttributeDtoFiller;
+
+    public function __construct(FlowerAttributeDtoFillerInterface $flowerAttributeDtoFiller)
+    {
+        $this->flowerAttributeDtoFiller = $flowerAttributeDtoFiller;
+    }
+
     /**
-     * @param Argument $args
+     * @param array $args
      * @return FlowerCreationDto
      * @throws DataTransferObjectError
      */
-    public function fillingFromGraphQLArgument(Argument $args): FlowerCreationDto
+    public function filling(array $args): FlowerCreationDto
     {
-        var_dump($args['input']);
-        return FlowerCreationDto::buildFromArray([
-            'name' => $args['input']['name'],
-        ]);
+        $buildArray = [
+            'name' => $args['name'],
+        ];
+
+        if (isset($args['flowerAttributes'])) {
+            foreach ($args['flowerAttributes'] as $attribute) {
+                $buildArray['flowerAttributes'][] = $this->flowerAttributeDtoFiller->filling($attribute);
+            }
+        }
+
+        return FlowerCreationDto::buildFromArray($buildArray);
     }
 }
