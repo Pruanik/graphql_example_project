@@ -1,0 +1,11 @@
+FlowerAttributeInput:
+  type: input-object
+  config:
+    description: "Свойство добавляемого цветка"
+    fields:
+      attributeName:
+        type: "String"
+        description: "Название свойства"
+      value:
+        type: "String"
+        description: "Значение свойства"

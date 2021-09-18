@@ -17,6 +17,7 @@ class FlowerCreationDtoFiller implements FlowerCreationDtoFillerInterface
      */
     public function fillingFromGraphQLArgument(Argument $args): FlowerCreationDto
     {
+        var_dump($args['input']);
         return FlowerCreationDto::buildFromArray([
             'name' => $args['input']['name'],
         ]);

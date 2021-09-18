@@ -1,0 +1,8 @@
+PurchaseInput:
+  type: input-object
+  config:
+    description: "Заполняем овершенная покупка"
+    fields:
+      customerName:
+        type: "String"
+        description: "Имя нового покупателя"

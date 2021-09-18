@@ -8,3 +8,9 @@ Mutation:
         args:
           input:
             type: "FlowerInput"
+      createShop:
+        type: "Shop"
+        resolve: "@=mutation('create_shop', [args])"
+        args:
+          input:
+            type: "ShopInput"

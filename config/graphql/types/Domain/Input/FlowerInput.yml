@@ -5,3 +5,6 @@ FlowerInput:
       name:
         type: "String"
         description: "Имя создаваемого цветка"
+      flowerAttributes:
+        type: "[FlowerAttributeInput]"
+        description: "Совйства цветка"

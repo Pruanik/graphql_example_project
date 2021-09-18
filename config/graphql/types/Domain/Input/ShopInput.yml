@@ -1,0 +1,17 @@
+ShopInput:
+  type: input-object
+  config:
+    description: "Новый цветочный магазин"
+    fields:
+      name:
+        type: "String"
+        description: "Название нового цветочного магазина"
+      address:
+        type: "String"
+        description: "Адрес добавляемого цветочного магазина"
+      flowers:
+        type: "[FlowerInput]"
+        description: "Цветы в этом новом магазине"
+      purchases:
+        type: "[PurchaseInput]"
+        description: "Покупки совершенные в добавляемом магазине"
