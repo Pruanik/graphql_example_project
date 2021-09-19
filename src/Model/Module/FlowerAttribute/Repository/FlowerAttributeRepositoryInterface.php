@@ -44,5 +44,5 @@ interface FlowerAttributeRepositoryInterface
     public function findByAttributeAndFlower(
         AttributeInterface $attribute,
         FlowerInterface $flower
-    ): FlowerAttributeInterface;
+    ): ?FlowerAttributeInterface;
 }

@@ -84,16 +84,20 @@ class ShopService implements ShopServiceInterface
     public function create(ShopCreationDto $shopDto): ShopInterface
     {
         $shop = $this->findExistOrCreateNewByName($shopDto->name);
-        $this->shopRepository->add($shop);
-
         $shop = $this->fillingFlowersForShop($shop, $shopDto);
         $shop = $this->fillingPurchasesForShop($shop, $shopDto);
 
+        $shop->setAddress($shopDto->address);
         $this->shopRepository->save();
-
         return $shop;
     }
 
+    /**
+     * @param string $name
+     * @return ShopInterface
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
     private function findExistOrCreateNewByName(string $name): ShopInterface
     {
         $shop = $this->shopRepository->findByName($name);
@@ -102,6 +106,7 @@ class ShopService implements ShopServiceInterface
             $shop->setName($name);
         }
 
+        $this->shopRepository->add($shop);
         return $shop;
     }
 

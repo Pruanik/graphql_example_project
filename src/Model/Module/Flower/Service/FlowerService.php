@@ -68,12 +68,16 @@ class FlowerService implements FlowerServiceInterface
         $flower = $this->findExistOrCreateNewByName($flowerDto->name);
         $flower = $this->fillingAttributesForFlower($flower, $flowerDto);
 
-        $this->flowerRepository->add($flower);
         $this->flowerRepository->save();
-
         return $flower;
     }
 
+    /**
+     * @param string $name
+     * @return FlowerInterface
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
     private function findExistOrCreateNewByName(string $name): FlowerInterface
     {
         $flower = $this->flowerRepository->findByName($name);
@@ -82,6 +86,7 @@ class FlowerService implements FlowerServiceInterface
             $flower->setName($name);
         }
 
+        $this->flowerRepository->add($flower);
         return $flower;
     }
 

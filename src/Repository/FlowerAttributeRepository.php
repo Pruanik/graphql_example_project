@@ -72,7 +72,7 @@ class FlowerAttributeRepository extends ServiceEntityRepository implements Flowe
     public function findByAttributeAndFlower(
         AttributeInterface $attribute,
         FlowerInterface $flower
-    ): FlowerAttributeInterface {
+    ): ?FlowerAttributeInterface {
         return $this->findOneBy(['attribute' => $attribute, 'flower' => $flower]);
     }
 }

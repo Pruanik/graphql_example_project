@@ -26,12 +26,17 @@ class AttributeService implements AttributeServiceInterface
     public function create(string $attributeName): AttributeInterface
     {
         $attribute = $this->findExistOrCreateNewByName($attributeName);
-        $this->attributeRepository->add($attribute);
         $this->attributeRepository->save();
 
         return $attribute;
     }
 
+    /**
+     * @param string $name
+     * @return AttributeInterface
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
     private function findExistOrCreateNewByName(string $name): AttributeInterface
     {
         $attribute = $this->attributeRepository->findByName($name);
@@ -40,6 +45,7 @@ class AttributeService implements AttributeServiceInterface
             $attribute->setName($name);
         }
 
+        $this->attributeRepository->add($attribute);
         return $attribute;
     }
 }

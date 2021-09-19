@@ -55,12 +55,17 @@ class FlowerAttributeService implements FlowerAttributeServiceInterface
         $flowerAttribute = $this->findExistOrCreateNewByAttributeAndFlower($attribute, $flower);
         $flowerAttribute->setValue($flowerAttributeDto->value);
 
-        $this->flowerAttributeRepository->add($flowerAttribute);
         $this->flowerAttributeRepository->save();
-
         return $flowerAttribute;
     }
 
+    /**
+     * @param AttributeInterface $attribute
+     * @param FlowerInterface $flower
+     * @return FlowerAttributeInterface
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
     private function findExistOrCreateNewByAttributeAndFlower(
         AttributeInterface $attribute,
         FlowerInterface $flower
@@ -74,6 +79,7 @@ class FlowerAttributeService implements FlowerAttributeServiceInterface
             $flowerAttribute->setFlower($flower);
         }
 
+        $this->flowerAttributeRepository->add($flowerAttribute);
         return $flowerAttribute;
     }
 }
