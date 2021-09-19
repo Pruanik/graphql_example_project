@@ -14,7 +14,8 @@ class ShopService implements ShopServiceInterface
 {
     private ShopRepositoryInterface $shopRepository;
 
-    public function __construct(ShopRepositoryInterface $shopRepository) {
+    public function __construct(ShopRepositoryInterface $shopRepository)
+    {
         $this->shopRepository = $shopRepository;
     }
 
@@ -40,7 +41,7 @@ class ShopService implements ShopServiceInterface
     public function getAllIds(): array
     {
         $shopIds = $this->shopRepository->getAllIds();
-        return array_map(static function ($column){
+        return array_map(static function ($column) {
             return (int)$column['id'];
         }, $shopIds);
     }
