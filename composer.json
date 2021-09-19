@@ -17,6 +17,7 @@
         "doctrine/mongodb-odm-bundle": "^4.3",
         "doctrine/orm": "^2.9",
         "gedmo/doctrine-extensions": "^3.1",
+        "overblog/dataloader-bundle": "^0.5.1",
         "overblog/graphql-bundle": "^0.13.6",
         "spatie/data-transfer-object": "^2.8",
         "symfony/console": "5.3.*",

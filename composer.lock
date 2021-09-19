@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d1f979123b100e25a177aab2c6aeeed",
+    "content-hash": "775dd401b5bc9c517f35878422476559",
     "packages": [
         {
             "name": "alcaeus/mongo-php-adapter",
@@ -2118,6 +2118,128 @@
                 "source": "https://github.com/mongodb/mongo-php-library/tree/1.9.0"
             },
             "time": "2021-07-13T20:03:24+00:00"
+        },
+        {
+            "name": "overblog/dataloader-bundle",
+            "version": "v0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/dataloader-bundle.git",
+                "reference": "505ed3c11f9582db9eb009b937c93cabf94f85d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/dataloader-bundle/zipball/505ed3c11f9582db9eb009b937c93cabf94f85d1",
+                "reference": "505ed3c11f9582db9eb009b937c93cabf94f85d1",
+                "shasum": ""
+            },
+            "require": {
+                "overblog/dataloader-php": "^0.5.0 || ^0.6.0",
+                "php": ">=7.2",
+                "symfony/dependency-injection": "^4.3 || ^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.1 || ^5.5 || ^6.5 || ^7.5 || ^8.5",
+                "react/promise": "^2.5",
+                "symfony/dependency-injection": "^4.3 || ^5.0",
+                "symfony/framework-bundle": "^4.3 || ^5.0",
+                "symfony/phpunit-bridge": "^4.3 || ^5.0",
+                "symfony/yaml": "^4.3 || ^5.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\DataLoaderBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Overblog",
+                    "homepage": "http://www.over-blog.com"
+                }
+            ],
+            "description": "DataLoader Symfony bundle implementation.",
+            "keywords": [
+                "Batching",
+                "caching",
+                "dataLoader"
+            ],
+            "support": {
+                "issues": "https://github.com/overblog/dataloader-bundle/issues",
+                "source": "https://github.com/overblog/dataloader-bundle/tree/v0.5.1"
+            },
+            "time": "2021-01-23T17:38:41+00:00"
+        },
+        {
+            "name": "overblog/dataloader-php",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/dataloader-php.git",
+                "reference": "69ae4b7107231a95018c9039293a7fea9e800e09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/dataloader-php/zipball/69ae4b7107231a95018c9039293a7fea9e800e09",
+                "reference": "69ae4b7107231a95018c9039293a7fea9e800e09",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "replace": {
+                "overblog/promise-adapter": "self.version"
+            },
+            "require-dev": {
+                "guzzlehttp/promises": "^1.3.0",
+                "phpunit/phpunit": "^7.5|^8.5",
+                "react/promise": "^2.5.0",
+                "webonyx/graphql-php": "^14.0"
+            },
+            "suggest": {
+                "guzzlehttp/promises": "To use with Guzzle promise",
+                "react/promise": "To use with ReactPhp promise",
+                "webonyx/graphql-php": "To use with Webonyx GraphQL native promise"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\DataLoader\\": "src/",
+                    "Overblog\\PromiseAdapter\\": "lib/promise-adapter/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "DataLoaderPhp is a generic utility to be used as part of your application's data fetching layer to provide a simplified and consistent API over various remote data sources such as databases or web services via batching and caching.",
+            "keywords": [
+                "Batching",
+                "caching",
+                "dataLoader"
+            ],
+            "support": {
+                "issues": "https://github.com/overblog/dataloader-php/issues",
+                "source": "https://github.com/overblog/dataloader-php/tree/v0.6.0"
+            },
+            "time": "2021-01-13T11:41:29+00:00"
         },
         {
             "name": "overblog/graphql-bundle",

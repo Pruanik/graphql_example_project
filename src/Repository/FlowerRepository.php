@@ -13,6 +13,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
+use InvalidArgumentException;
 use LogicException;
 
 /**
@@ -63,6 +64,19 @@ class FlowerRepository extends ServiceEntityRepository implements FlowerReposito
             throw new SearchException(sprintf('Not found flower #id %s', $id));
         }
         return $flower;
+    }
+
+    /**
+     * @param int[] $ids
+     * @return FlowerInterface[]
+     * @throws InvalidArgumentException
+     */
+    public function getByIds(array $ids): array
+    {
+        $query = $this->createQueryBuilder('f');
+        $query->add('where', $query->expr()->in('s.id', ':ids'));
+        $query->setParameter('ids', $ids);
+        return $query->getQuery()->getResult();
     }
 
     /**

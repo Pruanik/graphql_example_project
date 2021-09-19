@@ -9,6 +9,7 @@ use App\Model\Exception\SearchException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
+use InvalidArgumentException;
 
 interface FlowerRepositoryInterface
 {
@@ -31,6 +32,13 @@ interface FlowerRepositoryInterface
      * @throws SearchException
      */
     public function getById(int $id): FlowerInterface;
+
+    /**
+     * @param int[] $ids
+     * @return FlowerInterface[]
+     * @throws InvalidArgumentException
+     */
+    public function getByIds(array $ids): array;
 
     /**
      * @param int $limit
