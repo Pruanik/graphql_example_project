@@ -66,7 +66,7 @@ class FlowerService implements FlowerServiceInterface
     public function create(FlowerCreationDto $flowerDto): FlowerInterface
     {
         $flower = $this->findExistOrCreateNewByName($flowerDto->name);
-        $flower = $this->fillingAttributeForFlower($flower, $flowerDto->flowerAttributes);
+        $flower = $this->fillingAttributesForFlower($flower, $flowerDto);
 
         $this->flowerRepository->add($flower);
         $this->flowerRepository->save();
@@ -87,17 +87,16 @@ class FlowerService implements FlowerServiceInterface
 
     /**
      * @param FlowerInterface $flower
-     * @param array|null $flowerAttributes
+     * @param FlowerCreationDto $flowerDto
      * @return FlowerInterface
      * @throws ORMException
      * @throws ORMInvalidArgumentException
      */
-    private function fillingAttributeForFlower(FlowerInterface $flower, ?array $flowerAttributes): FlowerInterface
+    private function fillingAttributesForFlower(FlowerInterface $flower, FlowerCreationDto $flowerDto): FlowerInterface
     {
-        if ($flowerAttributes !== null) {
-            foreach ($flowerAttributes as $flowerAttribute) {
-                $attribute = $this->flowerAttributeService->create($flowerAttribute);
-                $attribute->setFlower($flower);
+        if ($flowerDto->flowerAttributes !== null) {
+            foreach ($flowerDto->flowerAttributes as $flowerAttribute) {
+                $attribute = $this->flowerAttributeService->create($flowerAttribute, $flower);
                 $flower->addFlowerAttribute($attribute);
             }
         }

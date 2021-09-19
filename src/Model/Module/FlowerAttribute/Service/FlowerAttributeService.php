@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Model\Module\FlowerAttribute\Service;
 
 use App\Entity\FlowerAttribute;
+use App\Model\Entity\AttributeInterface;
 use App\Model\Entity\FlowerAttributeInterface;
+use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\Attribute\Service\AttributeServiceInterface;
 use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
@@ -45,16 +47,32 @@ class FlowerAttributeService implements FlowerAttributeServiceInterface
      * @throws ORMInvalidArgumentException
      * @throws ORMException
      */
-    public function create(FlowerAttributeCreationDto $flowerAttributeDto): FlowerAttributeInterface
-    {
-        $flowerAttribute = new FlowerAttribute();
-        $attribute = $this->attributeService->findExistOrCreateNewByName($flowerAttributeDto->attributeName);
-
-        $flowerAttribute->setAttribute($attribute);
+    public function create(
+        FlowerAttributeCreationDto $flowerAttributeDto,
+        FlowerInterface $flower
+    ): FlowerAttributeInterface {
+        $attribute = $this->attributeService->create($flowerAttributeDto->attributeName);
+        $flowerAttribute = $this->findExistOrCreateNewByAttributeAndFlower($attribute, $flower);
         $flowerAttribute->setValue($flowerAttributeDto->value);
 
         $this->flowerAttributeRepository->add($flowerAttribute);
         $this->flowerAttributeRepository->save();
+
+        return $flowerAttribute;
+    }
+
+    private function findExistOrCreateNewByAttributeAndFlower(
+        AttributeInterface $attribute,
+        FlowerInterface $flower
+    ): FlowerAttributeInterface {
+        $flowerAttribute = $this->flowerAttributeRepository->findByAttributeAndFlower($attribute, $flower);
+
+        if ($flowerAttribute === null) {
+            $flowerAttribute = new FlowerAttribute();
+
+            $flowerAttribute->setAttribute($attribute);
+            $flowerAttribute->setFlower($flower);
+        }
 
         return $flowerAttribute;
     }

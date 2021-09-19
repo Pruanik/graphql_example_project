@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\FlowerAttribute;
+use App\Model\Entity\AttributeInterface;
 use App\Model\Entity\FlowerAttributeInterface;
 use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\SearchException;
@@ -66,5 +67,12 @@ class FlowerAttributeRepository extends ServiceEntityRepository implements Flowe
             throw new SearchException(sprintf('Not found flower attribute for flower #id %s', $flower->getId()));
         }
         return $flowerAttribute;
+    }
+
+    public function findByAttributeAndFlower(
+        AttributeInterface $attribute,
+        FlowerInterface $flower
+    ): FlowerAttributeInterface {
+        return $this->findOneBy(['attribute' => $attribute, 'flower' => $flower]);
     }
 }
