@@ -7,7 +7,11 @@ namespace App\Model\Module\Shop\Service;
 use App\Entity\Shop;
 use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
+use App\Model\Module\Shop\Dto\ShopCreationDto;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 
 interface ShopServiceInterface
 {
@@ -21,8 +25,17 @@ interface ShopServiceInterface
     public function getCollectionWithLimit(int $limit = 100): ArrayCollection;
 
     /**
-     * @return Shop
+     * @return ShopInterface
      * @throws SearchException
      */
-    public function getRandomShop(): Shop;
+    public function getRandomShop(): ShopInterface;
+
+    /**
+     * @param ShopCreationDto $shopDto
+     * @return ShopInterface
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     * @throws OptimisticLockException
+     */
+    public function create(ShopCreationDto $shopDto): ShopInterface;
 }

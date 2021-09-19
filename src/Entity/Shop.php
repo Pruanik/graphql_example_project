@@ -55,7 +55,8 @@ class Shop implements ShopInterface
      */
     private Collection $purchases;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->flowers = new ArrayCollection();
         $this->purchases = new ArrayCollection();
     }
@@ -113,10 +114,10 @@ class Shop implements ShopInterface
         return $this->purchases;
     }
 
-    public function addPurchases(PurchaseInterface $purchases): ShopInterface
+    public function addPurchase(PurchaseInterface $purchase): ShopInterface
     {
-        if (!$this->purchases->contains($purchases)) {
-            $this->purchases[] = $purchases;
+        if (!$this->purchases->contains($purchase)) {
+            $this->purchases[] = $purchase;
         }
         return $this;
     }

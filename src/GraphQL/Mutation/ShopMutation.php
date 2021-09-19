@@ -35,10 +35,12 @@ class ShopMutation implements MutationInterface, AliasedInterface
     {
         try {
             $shopDto = $this->shopDtoFiller->filling($args['input']);
-            var_dump($shopDto);
+            $shop = $this->shopService->create($shopDto);
         } catch (Throwable $e) {
             throw new ShopCreationException($e->getMessage());
         }
+
+        return $shop;
     }
 
     public static function getAliases(): array

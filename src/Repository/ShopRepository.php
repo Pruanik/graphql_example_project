@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Shop;
+use App\Model\Entity\FlowerInterface;
 use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\Shop\Repository\ShopRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,6 +26,25 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Shop::class);
+    }
+
+    /**
+     * @param ShopInterface $shop
+     * @throws ORMException
+     * @throws ORMInvalidArgumentException
+     */
+    public function add(ShopInterface $shop): void
+    {
+        $this->getEntityManager()->persist($shop);
+    }
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(): void
+    {
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -53,5 +76,10 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             ->select('Shops.id')
             ->getQuery()
             ->getScalarResult();
+    }
+
+    public function findByName(string $name): ?ShopInterface
+    {
+        return $this->findOneBy(['name' => $name]);
     }
 }

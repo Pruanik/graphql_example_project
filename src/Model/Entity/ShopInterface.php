@@ -31,5 +31,5 @@ interface ShopInterface
      */
     public function getPurchases(): Collection;
 
-    public function addPurchases(PurchaseInterface $purchases): ShopInterface;
+    public function addPurchase(PurchaseInterface $purchase): ShopInterface;
 }
