@@ -31,7 +31,7 @@ class ShopCreationDtoFiller implements ShopCreationDtoFillerInterface
     {
         $buildArray = [
             'name'    => $args['name'],
-            'address' => $args['address'],
+            'address' => $args['address'] ?? null,
         ];
 
         if (isset($args['flowers'])) {

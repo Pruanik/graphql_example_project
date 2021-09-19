@@ -6,8 +6,10 @@ ShopInput:
       name:
         type: "String!"
         description: "Название нового цветочного магазина"
+        validation:
+          link: App\Entity\Shop::$name
       address:
-        type: "String!"
+        type: "String"
         description: "Адрес добавляемого цветочного магазина"
       flowers:
         type: "[FlowerInput]"

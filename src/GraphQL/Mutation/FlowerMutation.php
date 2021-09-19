@@ -8,7 +8,7 @@ use App\Model\Entity\FlowerInterface;
 use App\Model\Exception\FlowerCreationException;
 use App\Model\Module\Flower\Service\FlowerCreationDtoFillerInterface;
 use App\Model\Module\Flower\Service\FlowerServiceInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
+use Overblog\GraphQLBundle\Definition\ArgumentInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 use Throwable;
@@ -27,11 +27,11 @@ class FlowerMutation implements MutationInterface, AliasedInterface
     }
 
     /**
-     * @param Argument $args
+     * @param ArgumentInterface $args
      * @return FlowerInterface
      * @throws FlowerCreationException
      */
-    public function createFlower(Argument $args): FlowerInterface
+    public function createFlower(ArgumentInterface $args): FlowerInterface
     {
         try {
             $flowerDto = $this->flowerCreationDtoFiller->filling($args['input']);

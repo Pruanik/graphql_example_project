@@ -5,6 +5,10 @@ FlowerInput:
       name:
         type: "String!"
         description: "Имя создаваемого цветка"
+        validation:
+          - Length:
+              min: 6
+              max: 32
       flowerAttributes:
         type: "[FlowerAttributeInput]"
         description: "Совйства цветка"

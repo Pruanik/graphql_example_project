@@ -8,7 +8,7 @@ use App\Model\Entity\ShopInterface;
 use App\Model\Exception\ShopCreationException;
 use App\Model\Module\Shop\Service\ShopCreationDtoFillerInterface;
 use App\Model\Module\Shop\Service\ShopServiceInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
+use Overblog\GraphQLBundle\Definition\ArgumentInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 use Throwable;
@@ -27,11 +27,11 @@ class ShopMutation implements MutationInterface, AliasedInterface
     }
 
     /**
-     * @param Argument $args
+     * @param ArgumentInterface $args
      * @return ShopInterface
      * @throws ShopCreationException
      */
-    public function createShop(Argument $args): ShopInterface
+    public function createShop(ArgumentInterface $args): ShopInterface
     {
         try {
             $shopDto = $this->shopDtoFiller->filling($args['input']);
