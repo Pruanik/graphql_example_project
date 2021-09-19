@@ -11,6 +11,7 @@ use App\Model\Module\Flower\Service\FlowerServiceInterface;
 use Overblog\GraphQLBundle\Definition\ArgumentInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
+use Overblog\GraphQLBundle\Error\UserWarning;
 use Throwable;
 
 class FlowerMutation implements MutationInterface, AliasedInterface
@@ -30,9 +31,11 @@ class FlowerMutation implements MutationInterface, AliasedInterface
      * @param ArgumentInterface $args
      * @return FlowerInterface
      * @throws FlowerCreationException
+     * @throws UserWarning
      */
     public function createFlower(ArgumentInterface $args): FlowerInterface
     {
+        $this->showWarningMessageExample($args['input']['name']);
         try {
             $flowerDto = $this->flowerCreationDtoFiller->filling($args['input']);
             $flower = $this->flowerService->create($flowerDto);
@@ -48,5 +51,16 @@ class FlowerMutation implements MutationInterface, AliasedInterface
         return [
             'createFlower' => 'create_flower',
         ];
+    }
+
+    /**
+     * @param string $flowerName
+     * @throws UserWarning
+     */
+    private function showWarningMessageExample(string $flowerName): void
+    {
+        if ($flowerName === 'Роза') {
+            throw new UserWarning('Осторожно! Роза может Вас уколоть своими шипами.');
+        }
     }
 }
