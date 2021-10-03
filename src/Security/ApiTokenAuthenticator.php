@@ -28,7 +28,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
         $user = null;
-        if (null !== $credentials) {
+        if ($credentials !== null) {
             $user = $userProvider->loadUserByIdentifier($credentials);
         }
 
