@@ -74,7 +74,7 @@ class FlowerRepository extends ServiceEntityRepository implements FlowerReposito
     public function getByIds(array $ids): array
     {
         $query = $this->createQueryBuilder('f');
-        $query->add('where', $query->expr()->in('s.id', ':ids'));
+        $query->add('where', $query->expr()->in('f.id', ':ids'));
         $query->setParameter('ids', $ids);
         return $query->getQuery()->getResult();
     }

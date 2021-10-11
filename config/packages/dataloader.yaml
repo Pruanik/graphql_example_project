@@ -4,4 +4,7 @@ overblog_dataloader:
   loaders:
     flowers:
       alias: "flowers_dataloader"
-      batch_load_fn: "@app.graph.flowers_loader:all"
+      batch_load_fn: "App\\GraphQL\\Loader\\FlowerLoader::getFlowersPromise"
+    shops:
+      alias: "shops_dataloader"
+      batch_load_fn: "@app.graph.shops_loader:getShopsPromise"

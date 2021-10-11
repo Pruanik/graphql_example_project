@@ -29,6 +29,5 @@ services:
     App\Controller\LuckyController:
         tags: [ controller.service_arguments ]
 
-    app.graph.flowers_loader:
-        class: App\GraphQL\Loader\FlowerLoader
-
+    app.graph.shops_loader:
+        class:  App\GraphQL\Loader\ShopLoader

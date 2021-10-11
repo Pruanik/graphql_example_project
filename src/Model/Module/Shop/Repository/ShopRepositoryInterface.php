@@ -9,6 +9,7 @@ use App\Model\Exception\SearchException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
+use InvalidArgumentException;
 
 interface ShopRepositoryInterface
 {
@@ -31,6 +32,13 @@ interface ShopRepositoryInterface
      * @throws SearchException
      */
     public function getById(int $id): ShopInterface;
+
+    /**
+     * @param array $ids
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public function getByIds(array $ids): array;
 
     /**
      * @param int $limit

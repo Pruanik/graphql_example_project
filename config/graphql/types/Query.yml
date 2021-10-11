@@ -23,7 +23,7 @@ Query:
           id:
             type: "Int!"
             description: "Идентификатор магазина"
-        resolve: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver::resolve", [args["id"]])'
+        resolve: '@=resolver("App\\GraphQL\\Resolver\\ShopResolver::resolve", [args["id"], context])'
       shops:
         type: "[Shop]"
         args:

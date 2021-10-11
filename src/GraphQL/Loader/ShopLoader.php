@@ -4,32 +4,32 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Loader;
 
-use App\Model\Module\Flower\Repository\FlowerRepositoryInterface;
+use App\Model\Module\Shop\Repository\ShopRepositoryInterface;
 use GraphQL\Executor\Promise\Promise;
 use GraphQL\Executor\Promise\PromiseAdapter;
 use InvalidArgumentException;
 
-class FlowerLoader
+class ShopLoader
 {
     private PromiseAdapter $promiseAdapter;
-    private FlowerRepositoryInterface $repository;
+    private ShopRepositoryInterface $repository;
 
     public function __construct(
         PromiseAdapter $promiseAdapter,
-        FlowerRepositoryInterface $repository
+        ShopRepositoryInterface $repository
     ) {
         $this->promiseAdapter = $promiseAdapter;
         $this->repository = $repository;
     }
 
     /**
-     * @param array|int[] $flowerIds
+     * @param array|int[] $shopIds
      * @return Promise
      * @throws InvalidArgumentException
      */
-    public function getFlowersPromise(array $flowerIds): Promise
+    public function getShopsPromise(array $shopIds): Promise
     {
-        $flowers = $this->repository->getByIds($flowerIds);
-        return $this->promiseAdapter->all($flowers);
+        $shops = $this->repository->getByIds($shopIds);
+        return $this->promiseAdapter->all([$shops]);
     }
 }

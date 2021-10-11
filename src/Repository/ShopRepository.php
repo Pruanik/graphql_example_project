@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Shop;
-use App\Model\Entity\FlowerInterface;
 use App\Model\Entity\ShopInterface;
 use App\Model\Exception\SearchException;
 use App\Model\Module\Shop\Repository\ShopRepositoryInterface;
@@ -14,6 +13,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
+use InvalidArgumentException;
 
 /**
  * @method Shop|null find($id, $lockMode = null, $lockVersion = null)
@@ -59,6 +59,19 @@ class ShopRepository extends ServiceEntityRepository implements ShopRepositoryIn
             throw new SearchException(sprintf('Not found shop #id %s', $id));
         }
         return $flower;
+    }
+
+    /**
+     * @param array $ids
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public function getByIds(array $ids): array
+    {
+        $query = $this->createQueryBuilder('s');
+        $query->add('where', $query->expr()->in('s.id', ':ids'));
+        $query->setParameter('ids', $ids);
+        return $query->getQuery()->getResult();
     }
 
     /**
