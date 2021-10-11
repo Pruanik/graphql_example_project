@@ -4,7 +4,7 @@
 GraphQLBundle (вендор Overblog). Проект состоит из четырех Docker контейнеров (php, mysql, nginx, mongodb).
 
 ---
-##Установка и развертывание приложения
+## Установка и развертывание приложения
 1. Клонируем репозиторий:
 
     `git@github.com:Pruanik/graphql_example_project.git`
@@ -33,7 +33,7 @@ GraphQLBundle (вендор Overblog). Проект состоит из четы
 
    [http://localhost:8080/](http://localhost:8080/)
 
-##Список команд для управления проектом
+## Список команд для управления проектом
 **Для сборки контейнеров:**
 `make build`
 
@@ -55,7 +55,7 @@ GraphQLBundle (вендор Overblog). Проект состоит из четы
 **Для входа в главный контейнер с приложением:**
 `make enter`
 
-##Полезные ссылки
+## Полезные ссылки
 * По умолчанию проект разворачивается на порту 8080, а значит ссылка будет 
 [http://localhost:8080/](http://localhost:8080/) 
 * В проект подключена библиотека overblog/graphiql-bundle для удобства тестирования запросов к GraphQL серверу. 
@@ -65,10 +65,10 @@ GraphQLBundle (вендор Overblog). Проект состоит из четы
 на адрес: [http://localhost:8080/graphql/](http://localhost:8080/graphql/)
 
 ---
-##Схема модели данных приложения
+## Схема модели данных приложения
 ![](public/assets/img/data_model.png)
 
-##Структура приложения
+## Структура приложения
 
 * Схема GraphQL данных хранятся в *config/graphql/types/Domain/Input* и *config/graphql/types/Domain/Object* для мутаций
 и объектов соответственно.
