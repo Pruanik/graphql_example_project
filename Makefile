@@ -26,3 +26,6 @@ init:
 	docker exec -it ${PHP_CONTAINER_NAME} symfony console doctrine:migrations:migrate
 	docker exec -it ${PHP_CONTAINER_NAME} php bin/console doctrine:fixtures:load
 	docker exec -it ${PHP_CONTAINER_NAME} php bin/console doctrine:mongodb:fixtures:load
+
+cache-clean:
+	docker exec -it ${PHP_CONTAINER_NAME} php bin/console cache:clear
