@@ -8,17 +8,17 @@ GraphQLBundle (вендор Overblog). Проект состоит из четы
 
     `git@github.com:Pruanik/graphql_example_project.git`
 
-2. Собираем контейнеры:
+2. Настраиваем .env файл:
+
+   `cp .env_example .env`
+
+3. Собираем контейнеры:
 
     `make build`
 
-3. Запуск контейнеров
+4. Запуск контейнеров
 
    `make up`
-
-4. Настраиваем .env файл:
-
-   `cp .env_example .env`
 
 5. Устанавливаем зависимости:
 
