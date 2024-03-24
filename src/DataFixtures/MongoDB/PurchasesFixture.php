@@ -15,12 +15,12 @@ use Exception;
 class PurchasesFixture extends Fixture
 {
     public const CUSTOMERS = [
-        'Вася',
-        'Петя',
-        'Маша',
-        'Катя',
-        'Саша',
-        'Женя',
+        'Juan',
+        'Marina',
+        'Sandra',
+        'Mireia',
+        'Alex',
+        'Manuel',
     ];
 
     private ShopServiceInterface $shopService;

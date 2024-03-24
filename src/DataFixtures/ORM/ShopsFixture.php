@@ -16,27 +16,27 @@ class ShopsFixture extends Fixture implements DependentFixtureInterface
     public const SHOPS = [
         [
             'name'    => 'L’Flowers',
-            'address' => 'ул. Зайцева, 3',
+            'address' => 'Avinguda del Mar, 2',
         ],
         [
             'name'    => 'Gentle Flowers',
-            'address' => 'наб. реки Фонтанки, 124',
+            'address' => 'Carrer d\'Albert Ferrer i Soler',
         ],
         [
             'name'    => 'Flowersboom',
-            'address' => 'переулок Ульяны Громовой, 3',
+            'address' => 'Carrer de la Creu, 16',
         ],
         [
             'name'    => 'Amsterdam flowers',
-            'address' => 'пр-т Бакунина, 4',
+            'address' => 'Carrer de Francesc Bellapart, 1',
         ],
         [
-            'name'    => '«Букет 112»',
-            'address' => 'проспект Энгельса, 33, к1',
+            'name'    => '«Bouquet 112»',
+            'address' => 'Carrer de l\'Esglesia, 9',
         ],
         [
             'name'    => 'SEVER',
-            'address' => 'Кожевенная линия, 36',
+            'address' => 'Avinguda del Mar, 28',
         ],
     ];
 

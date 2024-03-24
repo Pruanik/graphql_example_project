@@ -12,24 +12,20 @@ class AttributesFixture extends Fixture
 {
     public const ATTRIBUTES = [
         [
-            'name'     => 'Цвет',
-            'variants' => ['Красный', 'Зеленый', 'Желтый', 'Малиновый'],
+            'name'     => 'Color',
+            'variants' => ['Red', 'Green', 'Yellow', 'Purple'],
         ],
         [
-            'name'     => 'Срок хранения',
-            'variants' => ['1 день', '2 дня', '3 дня', '4 дня', '5 дней'],
+            'name'     => 'Shelf life',
+            'variants' => ['1 day', '2 days', '3 days', '4 days', '5 days'],
         ],
         [
-            'name'     => 'Длина стебля',
-            'variants' => ['50 см', '60 см', '70-90 см', '100 см'],
+            'name'     => 'Flower stem length',
+            'variants' => ['50 sm', '60 sm', '70-90 sm', '100 sm'],
         ],
         [
-            'name'     => 'Съедобна ли?',
-            'variants' => ['Да', 'Нет'],
-        ],
-        [
-            'name'     => 'Толщина бутона',
-            'variants' => ['4,3 см', '4,5 см', '5 см', '5,5 см'],
+            'name'     => 'Bud thickness',
+            'variants' => ['4,3 sm', '4,5 sm', '5 sm', '5,5 sm'],
         ],
     ];
 

@@ -1,25 +1,25 @@
 Shop:
   type: object
   config:
-    description: "Цветочные магазины"
+    description: "Flower shop"
     fields:
       id:
         type: "Int!"
-        description: "Идентификатор цветочного магазина"
+        description: "Flower shop id"
       name:
         type: "String!"
-        description: "Название цветочного магазина"
+        description: "Flower shop name"
       address:
         type: "String"
-        description: "Адрес цветочного магазина"
+        description: "Flower shop address"
       flowers:
         type: "[Flower]"
-        description: "Цветы в этом магазине"
+        description: "The flowers of this shop"
         args:
           attributeValue:
             type: "String"
-            description: "Атрибут цветов"
+            description: "Flower attributes"
         resolve: '@=resolver("App\\GraphQL\\Resolver\\FlowerResolver::resolveByAttributeAndShop", [value, args])'
       purchases:
         type: "[Purchase]"
-        description: "Покупки совершенные в этом магазине"
+        description: "Purchases made in the shop"

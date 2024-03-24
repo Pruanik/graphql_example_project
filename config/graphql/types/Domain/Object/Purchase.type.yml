@@ -1,11 +1,11 @@
 Purchase:
   type: object
   config:
-    description: "Совершенная покупка"
+    description: "Purchases"
     fields:
       id:
         type: "String!"
-        description: "Идентификатор покупки"
+        description: "Purchase id"
       customerName:
         type: "String!"
-        description: "Имя покупателя"
+        description: "Customer name"

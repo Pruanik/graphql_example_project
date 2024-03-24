@@ -1,18 +1,18 @@
 Flower:
   type: object
   config:
-    description: "Различные цветочки"
+    description: "Flowers"
     fields:
       id:
         type: "Int!"
-        description: "Идентификатор цветка"
+        description: "Flower id"
       name:
         type: "String!"
-        description: "Название цветка"
+        description: "Flower name"
       flowerAttributes:
         type: "[FlowerAttribute]"
-        description: "Совйства цветка"
+        description: "Flower attributes"
         access: "@=isAuthenticated()"
       shops:
         type: "[Shop]"
-        description: "Магазины в которых есть эти цветы"
+        description: "Shops that have these flowers"

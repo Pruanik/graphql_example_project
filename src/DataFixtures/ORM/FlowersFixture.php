@@ -15,17 +15,17 @@ use Exception;
 class FlowersFixture extends Fixture
 {
     public const FLOWERS = [
-        'Роза',
-        'Хризантема',
-        'Гвоздика',
-        'Восточные лилии',
-        'Гербера',
-        'Тюльпан',
-        'Азиатские лилии',
-        'Фрезия',
-        'Альстромерия',
-        'Зверобой',
-        'Ирис',
+        'Rose',
+        'Chrysanthemum',
+        'Carnation',
+        'Oriental Lilies',
+        'Gerbera',
+        'Tulip',
+        'Asian lilies',
+        'Freesia',
+        'Alstromeria',
+        'Hypericum',
+        'Iris',
     ];
 
     /**
